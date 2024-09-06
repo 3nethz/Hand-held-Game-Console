@@ -4,8 +4,8 @@
 
 SDL_Color mColors[COLOR_MAX] = {
     {0, 0, 0, 255},      // black
-    {255, 0, 0, 255},      // red
-    {0, 255, 0, 255},      // blue
+    {255, 0, 0, 255},    // red
+    {0, 255, 0, 255},    // blue
     {0, 255, 255, 255},  // CYAN
     {255, 0, 255, 255},  // MAGENTA
     {255, 255, 0, 255},  // YELLOW
@@ -26,7 +26,7 @@ void IO::clearScreen()
     SDL_RenderClear(mRenderer);
 
     // Present the updated renderer (show the cleared screen)
-    SDL_RenderPresent(mRenderer);
+    //SDL_RenderPresent(mRenderer);
 }
 
 void IO::drawRectangle(int pX1, int pY1, int pX2, int pY2, enum color pC)
@@ -69,7 +69,7 @@ void IO::initGraph()
     mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
     if (mRenderer == nullptr)
     {
-        SDL_DestroyWindow(mWindow); 
+        SDL_DestroyWindow(mWindow);
         std::cerr << "Unable to create renderer" << SDL_GetError() << std::endl;
         exit(1);
     }
@@ -82,10 +82,39 @@ int IO::getScreenHeight()
 
 int IO::pollKey()
 {
-    SDL_PollEvent(e){
-        if (e.type == SDL_KEYDOWN)
-        {
-            return e.key.keysym.sym;
-        }
+	SDL_Event event;
+	while ( SDL_PollEvent(&event) ) 
+	{
+		switch (event.type) {
+			case SDL_KEYDOWN:
+				return event.key.keysym.sym;
+			case SDL_QUIT:
+				exit(3);
+		}
+	}
+	return -1;
+}
+
+int IO::isKeyDown(int pKey)
+{
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+    if (state[pKey])
+    {
+        return 1;
     }
+    return 0;
+}
+
+int IO::getKey()
+{
+	SDL_Event event;
+	while (true)
+	{
+	  SDL_WaitEvent(&event);
+	  if (event.type == SDL_KEYDOWN)
+		  break;
+      if (event.type == SDL_QUIT)
+		  exit(3);
+	};
+	return event.key.keysym.sym;
 }

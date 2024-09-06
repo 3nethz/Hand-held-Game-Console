@@ -1,6 +1,6 @@
 #include "Piece.h"
 
-const char mPieces[7][4][5][5] = {
+int mPieces[7][4][5][5] = {
     // Square
     {
         {{0, 0, 0, 0, 0},
@@ -107,7 +107,6 @@ const char mPieces[7][4][5][5] = {
          {0, 1, 2, 0, 0},
          {0, 1, 0, 0, 0},
          {0, 0, 0, 0, 0}},
-
         {{0, 0, 0, 0, 0},
          {0, 1, 1, 0, 0},
          {0, 0, 2, 1, 0},
@@ -218,4 +217,9 @@ int Piece::getXInitialPosition(int pPiece, int pRotation)
 int Piece::getYInitialPosition(int pPiece, int pRotation)
 {
     return mPiecesInitialPosition[pPiece][pRotation][1];
+}
+
+Piece::Piece()
+{
+    // Empty constructor
 }
