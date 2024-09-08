@@ -5,15 +5,15 @@
 #include <stdbool.h>
 
 // converting a tetromino type to its corresponding cell
-#define TYPE_TO_CELL (x)((x) + 1)
+#define TYPE_TO_CELL(x) ((x) + 1)
 
 // strings for printing a tetris board
 #define TC_EMPTY_STR " "
 #define TC_BLOCK_STR "\u2588"
 
 // checking tetris cell
-#define TC_IS_EMPTY (X)((X) == TC_EMPTY)
-#define TC_IS_FILLED (X)(!TC_IS_EMPTY(X))
+#define TC_IS_EMPTY(X) ((X) == TC_EMPTY)
+#define TC_IS_FILLED(X) (!TC_IS_EMPTY(X))
 
 // No of cells in a tetromino
 #define TETRIS 4
