@@ -74,6 +74,7 @@ typedef enum
     TM_LEFT,
     TM_RIGHT,
     TM_CLOCK,
+    TM_DROP,
     TM_COUNTER,
     TM_HOLD,
     TM_NONE
