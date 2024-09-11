@@ -33,8 +33,8 @@ typedef enum
 {
     TC_EMPTY,
     TC_CELLI,
-    TC_CELLL,
     TC_CELLJ,
+    TC_CELLL,
     TC_CELLO,
     TC_CELLS,
     TC_CELLT,
